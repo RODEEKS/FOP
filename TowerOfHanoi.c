@@ -1,21 +1,21 @@
 #include <stdlib.h>
 #include <stdio.h>
-void toh(int n, char A, char B, char C)
+void towerOfHanoi(int n, char from_rod, char to_rod,char aux_rod)
 {
-    if (n == 1)
-    {
-        printf("\nMove the disk 1 from %c to %c", A, B);
-        return;
-    }
-    toh(n - 1, A, B, C);
-    printf("\nMove the disk %d from %c to %c", n, A, B);
-    toh(n - 1, B, C, A);
+	if (n == 0) 
+	{
+		return;
+	}
+	towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
+	printf("Move disk %d from rod %c to rod  %c\n",n,from_rod,to_rod);
+	towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
 }
+
+
 int main()
 {
-    int n;
-    printf("Enter the number of disks : ");
-    scanf("%d", &n);
-    toh(n, 'A', 'B', 'C');
-    return 0;
+	int N;
+    scanf("%d",&N);
+	towerOfHanoi(N, 'A', 'C', 'B');
+	return 0;
 }
